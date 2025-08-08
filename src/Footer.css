@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #388e3c;
+  color: #fff;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.footer-nav {
+  display: flex;
+  gap: 2rem;
+}
+.footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-nav a:hover {
+  color: #c8e6c9;
+}

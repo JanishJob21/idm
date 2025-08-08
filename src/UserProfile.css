@@ -1,0 +1,26 @@
+.user-profile {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(34,34,59,0.10);
+  padding: 2rem 1.5rem;
+  max-width: 350px;
+  margin: 2rem auto;
+  text-align: center;
+}
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #4caf50;
+}
+.user-profile h2 {
+  margin: 0.5rem 0 0.2rem 0;
+  color: #388e3c;
+}
+.user-email, .user-address, .user-phone {
+  color: #2d4739;
+  margin: 0.2rem 0;
+  font-size: 1rem;
+}
