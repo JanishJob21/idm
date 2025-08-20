@@ -7,7 +7,8 @@ const navLinks = [
   { href: '/', label: 'Ex-1', key: 'home' },
   { href: '#profile', label: 'Ex-2', key: 'profile' },
   { href: '/calculator', label: 'Ex-3', key: 'login' },
-  { href: '/products', label: 'Ex-4', key: 'cart' } // goes to Products page
+  { href: '/products', label: 'Ex-4', key: 'cart' }, // goes to Products page
+  { href: '/counter', label: 'Ex-5', key: 'counter' }
 ];
 
 const Header = ({ isAuth, onShowAuth }) => (

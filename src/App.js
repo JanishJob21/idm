@@ -9,6 +9,7 @@ import UserProfile from './UserProfile';
 import Calculator from './Calculator';            // if already exists
 import Products from './Products';
 import Cart from './Cart';
+import GroceryCounter from './GroceryCounter';
 import './App.css';
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/products" element={<Products onAddToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} onRemove={removeFromCart} />} />
+          <Route path="/counter" element={<GroceryCounter />} />
 
           {/* Fallback */}
           <Route path="*" element={<div style={{ padding: '2rem' }}>Use Ex‑4 to jump in!</div>} />
