@@ -2,23 +2,20 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Header';
-// Ex-1
-import Home from './ex1/Home';
-// Ex-2
-import AuthForm from './ex2/AuthForm';
-import UserProfile from './ex2/UserProfile';
-// Ex-3
-import Calculator from './ex3/Calculator';
-// Ex-4
-import Products from './ex4/Products';
-import Cart from './ex4/Cart';
-// Ex-5
-import GroceryCounter from './ex5/GroceryCounter';
+import Content from './Content';
+import AuthForm from './AuthForm';
+import List from './List';
+import UserProfile from './UserProfile';
+import Calculator from './Calculator';            // if already exists
+import Products from './Products';
+import Cart from './Cart';
+import GroceryCounter from './GroceryCounter';
 import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const [cartItems, setCartItems] = useState(() => {
     const stored = localStorage.getItem('cart') || '[]';
     return JSON.parse(stored);
@@ -27,12 +24,17 @@ function App() {
   const handleAuth = (profile) => {
     setUser(profile);
     setIsAuth(true);
+    setShowAuth(false);
   };
 
   const handleLogout = () => {
     setUser(null);
     setIsAuth(false);
+    setShowAuth(false);
   };
+
+  const handleShowAuth = () => setShowAuth(true);
+  const handleCloseAuth = () => setShowAuth(false);
 
   const addToCart = (product) => {
     const updated = [...cartItems, product];
@@ -49,36 +51,31 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header isAuth={isAuth} onShowAuth={handleShowAuth} cartCount={cartItems.length} />
+
+        {showAuth && !isAuth && <AuthForm onAuth={handleAuth} onClose={handleCloseAuth} />}
 
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <Home />
+                {isAuth && (
+                  <UserProfile
+                    name={user?.name}
+                    email={user?.email}
+                    avatar={user?.avatar}
+                    address={user?.address}
+                    phone={user?.phone}
+                    city={user?.city}
+                    state={user?.state}
+                    zip={user?.zip}
+                    onLogout={handleLogout}
+                  />
+                )}
+                <Content />
+                <List />
               </>
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              isAuth ? (
-                <UserProfile
-                  name={user?.name}
-                  email={user?.email}
-                  avatar={user?.avatar}
-                  address={user?.address}
-                  phone={user?.phone}
-                  city={user?.city}
-                  state={user?.state}
-                  zip={user?.zip}
-                  onLogout={handleLogout}
-                />
-              ) : (
-                <AuthForm onAuth={handleAuth} />
-              )
             }
           />
 
