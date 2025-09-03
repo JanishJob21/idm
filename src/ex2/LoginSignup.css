@@ -1,61 +1,196 @@
-/* Embedded from src/AuthForm.css */
-.auth-form-container {
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 0;
-  margin: 0;
-  max-width: 100%;
-}
-.auth-form {
+/* Main container */
+.login-container {
   display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 20px;
 }
-.auth-input {
-  background: #fff;
-  border: 1.5px solid #4caf50;
-  color: #2d4739;
+
+/* Left side - Welcome section */
+.login-left {
+  flex: 1;
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.login-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.login-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.switch-button {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 40px;
+  border-radius: 30px;
   font-size: 1rem;
-  border-radius: 6px;
-  padding: 0.6rem 1rem;
-  margin-bottom: 0.2rem;
-  transition: border 0.2s;
-}
-.auth-input:focus {
-  border: 2px solid #388e3c;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
   outline: none;
 }
-.auth-btn {
-  background: #4caf50;
-  color: #fff;
-  border: none;
-  padding: 0.7rem 1.5rem;
+
+.switch-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Right side - Form section */
+.login-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f8f9fa;
+}
+
+.login-form, .signup-form {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2, .signup-form h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
   border-radius: 6px;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #4caf50;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.login-button, .signup-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  margin-top: 0.5rem;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
 }
-.auth-btn:hover {
-  background: #388e3c;
+
+.login-button {
+  background: #4caf50;
+  color: white;
 }
-.auth-toggle {
-  margin-top: 0.7rem;
-  font-size: 0.95rem;
+
+.signup-button {
+  background: #4caf50;
+  color: white;
+}
+
+.login-button:hover, .signup-button:hover {
+  background: #43a047;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.login-button:active, .signup-button:active {
+  transform: translateY(0);
+}
+
+.signup-link, .login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.signup-link span, .login-link span {
+  color: #4caf50;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.signup-link span:hover, .login-link span:hover {
+  text-decoration: underline;
   color: #388e3c;
 }
-.sidebar-auth-form {
-  width: 100%;
+
+.message {
+  padding: 10px 15px;
+  border-radius: 6px;
   margin-bottom: 1.5rem;
-  background: #e8f5e9;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(76,175,80,0.08);
-  padding: 1rem 0.5rem 0.5rem 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.message.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+  
+  .login-left {
+    padding: 3rem 1.5rem;
+  }
+  
+  .login-right {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form, .signup-form {
+    padding: 1.5rem;
+  }
+  
+  .login-content h1 {
+    font-size: 2rem;
+  }
+  
+  .login-content p {
+    font-size: 1rem;
+  }
 }
 
 /* Two-panel modern auth form inspired by the provided image */

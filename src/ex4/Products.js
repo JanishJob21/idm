@@ -23,7 +23,7 @@ export default function Products({ onAddToCart }) {
     setTimeout(() => setMessage(''), 2000);
   };
 
-  const goToCart = () => navigate('/cart');
+  const goToCart = () => navigate('/ex4/cart');
   const goToHome = () => navigate('/');
 
   return h(

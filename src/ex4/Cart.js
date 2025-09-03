@@ -57,7 +57,7 @@ export default function Cart({ cartItems, onRemove }) {
       h(
         'button',
         {
-          onClick: () => navigate('/products'),
+          onClick: () => navigate('/ex4'),
           className: 'go-to-products-btn',
           style: {
             padding: '0.5rem 1rem',

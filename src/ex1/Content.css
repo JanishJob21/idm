@@ -4,8 +4,10 @@
   background: #e8f5e9;
 }
 .content h1 {
-  color: #388e3c;
+  color: #2e7d32; /* Original green color */
   margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 .content-image {
   margin: 1.5rem 0;

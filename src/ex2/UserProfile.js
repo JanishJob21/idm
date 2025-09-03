@@ -2,50 +2,62 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserProfile.css';
 
-const UserProfile = (props) => {
-  const {
-    name,
-    email,
-    avatar,
-    address,
-    phone,
-    city,
-    state,
-    zip,
-    onLogout
-  } = props;
+const UserProfile = ({ user = {}, onLogout }) => {
   const localAvatar = 'https://img.freepik.com/free-psd/contact-icon-illustration-isolated_23-2151903337.jpg?semt=ais_hybrid&w=740';
   const navigate = useNavigate();
-  let displayName = name;
-  if (!displayName && email) {
+  
+  // Default to guest user if no user data
+  const { name, email, avatar } = user || {};
+  let displayName = name || 'Guest User';
+  
+  if (!name && email) {
     displayName = email.split('@')[0];
   }
-  if (!displayName) {
-    displayName = 'Guest User';
-  }
-  return React.createElement(
-    'div',
-    { className: 'user-profile' },
-    React.createElement('div', { style: { fontSize: 22, fontWeight: 700, color: '#27ae60', marginBottom: 8 } },
-      `Welcome, ${displayName}!`
-    ),
-    React.createElement('img', {
-      src: avatar || localAvatar,
-      alt: displayName + ' avatar',
-      className: 'user-avatar',
-      style: { width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', marginBottom: 16 }
-    }),
-    React.createElement('h2', null, displayName),
-    React.createElement('p', { className: 'user-email' }, email || ''),
-    React.createElement('button', {
-      className: 'logout-btn',
-      style: { margin: '16px 0', padding: '8px 24px', background: '#e74c3c', color: '#fff', border: 'none', borderRadius: 20, fontWeight: 600, cursor: 'pointer', fontSize: 16 },
-      onClick: () => { if (onLogout) onLogout(); navigate('/'); }
-    }, 'Log Out'),
-    phone && React.createElement('p', { className: 'user-phone' }, phone),
-    (address || city || state || zip) && React.createElement('p', { className: 'user-address' },
-      [address, city, state, zip].filter(Boolean).join(', ')
-    )
+
+  const handleLogout = () => {
+    if (onLogout) onLogout();
+    localStorage.removeItem('ex2User');
+    navigate('/ex2');
+  };
+
+  return (
+    <div className="user-profile-container">
+      <div className="profile-card">
+        <div className="profile-header">
+          <h2>Welcome! {displayName}</h2>
+        </div>
+        
+        <div className="profile-avatar-container">
+          <img 
+            src={avatar || localAvatar} 
+            alt={displayName} 
+            className="profile-avatar"
+          />
+          {email && <p className="profile-email">{email}</p>}
+        </div>
+        
+        <div className="profile-details">
+          <div className="profile-field">
+            <span className="field-label">Name:</span>
+            <span className="field-value">{displayName}</span>
+          </div>
+          
+          {email && (
+            <div className="profile-field">
+              <span className="field-label">Email:</span>
+              <span className="field-value">{email}</span>
+            </div>
+          )}
+          
+          <button 
+            className="logout-button"
+            onClick={handleLogout}
+          >
+            {email ? 'Log Out' : 'Back to Login'}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
